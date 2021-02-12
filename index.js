@@ -9,8 +9,11 @@ dotenv.config({path: './config/config.env'})
 
 const app = express();
 
+const connectDB = require('./config/db')
+connectDB();
+
 app.use('/', (req, res) => {
-    console.log('Works'.brightYellow.bgBrightMagenta);
+    console.log('Works'.random);
 })
 
 const PORT = process.env.PORT || 5000;
