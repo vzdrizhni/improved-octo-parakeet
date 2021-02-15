@@ -1,8 +1,14 @@
-const Day = require('../models/Day')
+const Day = require('../models/Day');
+const Meal = require('../models/Meal');
 
 exports.createMeal = async (req, res) => {
-    console.log(req.params.dayId);
+    req.body.day = req.params.dayId;
+
     const day = await Day.findById(req.params.dayId);
-    console.log(day);
-    res.json({data: day})
+
+    if (!day) {
+        return
+    }
+    let meal = await Meal.create(req.body);
+    res.json({data: meal});
 }

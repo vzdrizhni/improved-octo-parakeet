@@ -3,7 +3,12 @@ const mongoose = require('mongoose');
 const MealSchema = new mongoose.Schema({
     name: {
         type: String,
-        default: 'Meal' + Date.now.toISOString
+        default: 'Meal-' + Date.now().toString()
+    },
+    day: {
+        type: mongoose.Schema.Types.ObjectId,
+        ref: 'Day',
+        required: true
     },
     food: [{
         type: mongoose.Schema.Types.ObjectId,
@@ -13,4 +18,4 @@ const MealSchema = new mongoose.Schema({
     timestamps: true
 })
 
-module.exports = mongoose.model(MealSchema, 'Meal');
+module.exports = mongoose.model('Meal', MealSchema);
