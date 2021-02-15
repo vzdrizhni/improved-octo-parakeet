@@ -7,6 +7,7 @@ const colors = require('colors');
 
 //routes
 const days = require('./routes/days')
+const meals = require('./routes/meals')
 
 dotenv.config({path: './config/config.env'})
 
@@ -16,6 +17,7 @@ const connectDB = require('./config/db')
 connectDB();
 
 app.use('/api/v1/days', days);
+app.use('/api/v1/meals', meals);
 
 const PORT = process.env.PORT || 5000;
 
