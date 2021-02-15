@@ -10,3 +10,8 @@ exports.createDay = async (req, res) => {
     console.log(savedDay);
     res.status(200).json({data: savedDay})
 }
+
+exports.getDay = async (req, res) => {
+    const day = await Day.findById(req.params.dayId);
+    res.status(200).json({data: day})
+}
