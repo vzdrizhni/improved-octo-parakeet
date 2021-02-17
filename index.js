@@ -9,7 +9,9 @@ const colors = require('colors');
 const days = require('./routes/days')
 const meals = require('./routes/meals')
 
-dotenv.config({path: './config/config.env'})
+dotenv.config({
+    path: './config/config.env'
+})
 
 const app = express();
 
@@ -20,6 +22,20 @@ connectDB();
 
 app.use('/api/v1/days', days);
 app.use('/api/v1/meals', meals);
+
+app.use((error, req, res, next) => {
+    console.log(error);
+    const status = error.statusCode || 500;
+    const message = error.message;
+    const data = error.data;
+    res
+        .status(status)
+        .json({
+            message: message,
+            data: data
+        });
+});
+
 
 const PORT = process.env.PORT || 5000;
 
