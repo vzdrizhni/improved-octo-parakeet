@@ -1,19 +1,18 @@
 const Day = require('../models/Day');
 const Meal = require('../models/Meal');
 
-exports.createMeal = async (req, res) => {
+exports.createMeal = async (req, res, next) => {
     req.body.day = req.params.dayId;
-
-    const day = await Day.findById(req.params.dayId);
-
-    if (!day) {
-        const error = new Error('No day found with current id');
-        error.statusCode = 404;
-        error.data = errors.array();
-        throw error;
+    
+    try {
+        const meal = await Meal.create(req.body);
+        res.json({
+            data: meal
+        });
+    } catch (err) {
+        if (!err.statusCode) {
+            err.statusCode = 404;
+        }
+        next(err);
     }
-    let meal = await Meal.create(req.body);
-    res.json({
-        data: meal
-    });
 }
