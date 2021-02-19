@@ -13,6 +13,7 @@ exports.createMeal = async (req, res, next) => {
         if (!err.statusCode) {
             err.statusCode = 404;
         }
+        err.message = 'A day was not found'
         next(err);
     }
 }
