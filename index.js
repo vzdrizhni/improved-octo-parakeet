@@ -8,6 +8,7 @@ const colors = require('colors');
 //routes
 const days = require('./routes/days');
 const meals = require('./routes/meals');
+const food = require('./routes/food');
 
 //middlewares
 const handleErrors = require('./middleware/handleErrors');
@@ -25,9 +26,9 @@ connectDB();
 
 app.use('/api/v1/days', days);
 app.use('/api/v1/meals', meals);
+app.use('/api/v1/food', food);
 
 app.use(handleErrors);
-
 
 const PORT = process.env.PORT || 5000;
 
