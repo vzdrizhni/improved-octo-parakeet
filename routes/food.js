@@ -1,10 +1,11 @@
 const express = require('express');
 
-const router = express.Router();
+const router = express.Router({mergeParams: true});
 
 const {
     getSingleFood,
-    createFood
+    createFood,
+    addFoodToTheMeal
 } = require('../controllers/food');
 
 
@@ -13,5 +14,8 @@ router.route('/:foodId')
 
 router.route('/')
     .post(createFood)
+
+router.route('/addFood')
+    .post(addFoodToTheMeal)
 
 module.exports = router;

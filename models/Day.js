@@ -9,7 +9,7 @@ const DaySchema = new mongo.Schema({
     },
     meals: [{
         type: Schema.Types.ObjectId,
-        ref: 'Post'
+        ref: 'Meal'
     }],
 }, {
     timestamps: true

@@ -6,8 +6,12 @@ const router = express.Router({
 
 const {
     createMeal
-} = require('../controllers/meals')
+} = require('../controllers/meals');
 
-router.post('/', createMeal)
+const foodRouter = require('./food');
+
+router.use('/:mealId/food', foodRouter);
+
+router.post('/', createMeal);
 
 module.exports = router;
