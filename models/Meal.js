@@ -16,6 +16,27 @@ const MealSchema = new mongoose.Schema({
     }]
 }, {
     timestamps: true
-})
+});
+
+MealSchema.statics.getAllCallories = async function() {
+    console.log(this);
+
+    const obj = await this.aggregate([
+        {
+            $group: {
+                _id: '$food',
+                averageCost: {
+                    $sum: '$food.calories'
+                }
+            }
+        }
+    ]);
+
+    console.log(obj);
+};
+
+MealSchema.post('findOneAndUpdate', async function () {
+    await this.model.getAllCallories();
+});
 
 module.exports = mongoose.model('Meal', MealSchema);

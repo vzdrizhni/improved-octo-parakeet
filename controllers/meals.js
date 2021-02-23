@@ -36,7 +36,6 @@ exports.addFoodToTheMeal = asyncHandler(async (req, res, next) => {
         if (isUniqueFood === 0) {
             food = await Food.create(req.body);
         } else {
-            console.log(req.body);
             food = await Food.findOne(req.body);
         }
     }
@@ -45,7 +44,7 @@ exports.addFoodToTheMeal = asyncHandler(async (req, res, next) => {
         return next(new ErrorResponse(`Food was not found`, 404));
     }
 
-    let meal = await Meal.findByIdAndUpdate(mealId, {
+    let meal = await Meal.findOneAndUpdate(mealId, {
         $push: {
             food: food
         }

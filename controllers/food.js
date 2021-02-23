@@ -1,7 +1,7 @@
 const Food = require('../models/Food');
-const Meal = require('../models/Meal')
+const Meal = require('../models/Meal');
 
-const asyncHandler = require('../middleware/async')
+const asyncHandler = require('../middleware/async');
 
 const ErrorResponse = require('../utils/errors');
 
