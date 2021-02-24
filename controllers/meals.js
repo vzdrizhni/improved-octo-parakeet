@@ -27,18 +27,26 @@ exports.addFoodToTheMeal = asyncHandler(async (req, res, next) => {
     const mealId = req.params.mealId;
     let food;
 
+    console.log(req.body.weight);
+
     if (req.body._id) {
-        food = await Food.findById(req.body._id);
+        food = await Food.findById(req.body.food._id);
     } else {
         const isUniqueFood = await Food.find({
-            name: req.body.name,
-            calories: req.body.calories
+            name: req.body.food.name,
+            calories: req.body.food.calories
         }).countDocuments();
 
         if (isUniqueFood === 0) {
-            food = await Food.create(req.body);
+            food = await Food.create({
+                name: req.body.food.name,
+                calories: req.body.food.calories
+            });
         } else {
-            food = await Food.findOne(req.body);
+            food = await Food.findOne({
+                name: req.body.food.name,
+                calories: req.body.food.calories
+            });
         }
     }
 
@@ -46,7 +54,7 @@ exports.addFoodToTheMeal = asyncHandler(async (req, res, next) => {
         return next(new ErrorResponse(`Food was not found`, 404));
     }
 
-    const checkMeal = await Meal.findByIdAndUpdate(mealId).populate('food');
+    const checkMeal = await Meal.findByIdAndUpdate(mealId);
 
     if (!checkMeal) {
         return next(new ErrorResponse(`No meal found`, 404));
@@ -56,7 +64,10 @@ exports.addFoodToTheMeal = asyncHandler(async (req, res, next) => {
         _id: mealId
     }, {
         $push: {
-            food: food
+            food: {
+                food: food,
+                weight: req.body.weight
+            }
         }
     }, {
         new: true
@@ -65,7 +76,9 @@ exports.addFoodToTheMeal = asyncHandler(async (req, res, next) => {
     if (!meal) {
         return next(new ErrorResponse(`Meal was not found`, 404));
     }
-    
+
+    console.log(meal);
+
     meal = await meal.save();
 
     res.json({

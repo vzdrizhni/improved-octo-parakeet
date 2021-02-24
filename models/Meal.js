@@ -11,8 +11,15 @@ const MealSchema = new mongoose.Schema({
         required: true
     },
     food: [{
-        type: [mongoose.Schema.Types.ObjectId],
-        ref: 'Food'
+        food: {
+            type: mongoose.Schema.Types.ObjectId,
+            ref: 'Food',
+        },
+        weight: {
+            type: Number,
+            // required: true,
+            // default: 0
+        },
     }],
     totalCalories: {
         type: Number,
@@ -28,7 +35,14 @@ MealSchema.statics.getAllCallories = async function () {
     const obj = await this.aggregate([{
             $unwind: "$food"
         },
-        { $lookup: {from: 'meals', localField: 'food', foreignField: '_id', as: 'food'} } 
+        {
+            $lookup: {
+                from: 'meals',
+                localField: 'food',
+                foreignField: '_id',
+                as: 'food'
+            }
+        }
     ]);
 
     console.log(obj);
@@ -43,7 +57,7 @@ MealSchema.pre('save', async function () {
         return a + b.calories
     }, 0);
     this.totalCalories = allCallories
-    
+
 });
 
 module.exports = mongoose.model('Meal', MealSchema);
