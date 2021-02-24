@@ -38,16 +38,12 @@ MealSchema.statics.getAllCallories = async function () {
     // })
 };
 
-MealSchema.post('findOneAndUpdate', async function () {
-    // await this.model.getAllCallories();
-    const meal = await this.findOne(this);
-    const allCallories = meal.food.reduce((a, b) => {
+MealSchema.pre('save', async function () {
+    const allCallories = this.food.reduce((a, b) => {
         return a + b.calories
     }, 0);
-    console.log(allCallories);
-    // const updatedMeal = await this.updateOne({_id: meal._id}, {$set: {totalCalories: allCallories}}, {upsert: false});
-    await meal.updateOne({totalCalories: allCallories});
-    await meal.save()
+    this.totalCalories = allCallories
+    
 });
 
 module.exports = mongoose.model('Meal', MealSchema);
