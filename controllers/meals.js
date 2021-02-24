@@ -71,7 +71,7 @@ exports.addFoodToTheMeal = asyncHandler(async (req, res, next) => {
         }
     }, {
         new: true
-    }).populate('food');
+    }).populate('food.food');
 
     if (!meal) {
         return next(new ErrorResponse(`Meal was not found`, 404));

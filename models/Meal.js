@@ -17,8 +17,8 @@ const MealSchema = new mongoose.Schema({
         },
         weight: {
             type: Number,
-            // required: true,
-            // default: 0
+            required: true,
+            default: 0
         },
     }],
     totalCalories: {
