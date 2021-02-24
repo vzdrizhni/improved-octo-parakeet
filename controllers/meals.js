@@ -52,19 +52,21 @@ exports.addFoodToTheMeal = asyncHandler(async (req, res, next) => {
         return next(new ErrorResponse(`No meal found`, 404));
     }
 
-    let meal = await Meal.findOneAndUpdate(mealId, {
+    let meal = await Meal.findOneAndUpdate({
+        _id: mealId
+    }, {
         $push: {
             food: food
         }
     }, {
         new: true
     }).populate('food');
-    console.log(meal);
 
     if (!meal) {
         return next(new ErrorResponse(`Meal was not found`, 404));
     }
 
+    meal = await Meal.findById(meal._id).populate('food');
 
     res.json({
         success: true,
