@@ -38,12 +38,14 @@ MealSchema.statics.getAllCallories = async function () {
     // })
 };
 
-MealSchema.pre('findOneAndUpdate', async function () {
+MealSchema.post('findByIdAndUpdate', async function () {
     // await this.model.getAllCallories();
     const meal = await this.findOne(this);
+    console.log(meal);
     const allCallories = meal.food.reduce((a, b) => {
-        return a.calories + b.calories
+        return a + b.calories
     }, 0);
+    console.log(allCallories);
     await this.updateOne({_id: meal._id}, {$set: {totalCalories: allCallories}});
 });
 

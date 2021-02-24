@@ -4,9 +4,11 @@ const Food = require('../models/Food');
 
 const asyncHandler = require('../middleware/async');
 
+const ErrorResponse = require('../utils/errors');
+
 exports.createMeal = async (req, res, next) => {
     req.body.day = req.params.dayId;
-    
+
     try {
         const meal = await Meal.create(req.body);
         res.json({
@@ -44,15 +46,25 @@ exports.addFoodToTheMeal = asyncHandler(async (req, res, next) => {
         return next(new ErrorResponse(`Food was not found`, 404));
     }
 
+    const checkMeal = await Meal.findById(mealId);
+
+    if (!checkMeal) {
+        return next(new ErrorResponse(`No meal found`, 404));
+    }
+
     let meal = await Meal.findOneAndUpdate(mealId, {
         $push: {
             food: food
         }
+    }, {
+        new: true
     }).populate('food');
+    console.log(meal);
 
     if (!meal) {
         return next(new ErrorResponse(`Meal was not found`, 404));
     }
+
 
     res.json({
         success: true,
