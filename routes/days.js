@@ -6,10 +6,12 @@ const mealRouter = require('./meals');
 
 router.use('/:dayId/meals', mealRouter);
 
-const {createDay, getDay} = require('../controllers/days')
+const {createDay, getDay, getDays} = require('../controllers/days')
 
 router.post('/', createDay);
 
 router.get('/:dayId', getDay);
+
+router.get('/', getDays);
 
 module.exports = router;
