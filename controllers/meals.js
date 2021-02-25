@@ -3,7 +3,6 @@ const Meal = require('../models/Meal');
 const Food = require('../models/Food');
 
 const asyncHandler = require('../middleware/async');
-
 const ErrorResponse = require('../utils/errors');
 
 exports.createMeal = async (req, res, next) => {

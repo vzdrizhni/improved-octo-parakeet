@@ -4,11 +4,13 @@ const express = require('express');
 //third-party-packages
 const dotenv = require('dotenv');
 const colors = require('colors');
+const mongoSanitize = require('express-mongo-sanitize');
 
 //routes
 const days = require('./routes/days');
 const meals = require('./routes/meals');
 const food = require('./routes/food');
+const auth = require('./routes/auth');
 
 //middlewares
 const handleErrors = require('./middleware/handleErrors');
@@ -24,9 +26,12 @@ app.use(express.json());
 const connectDB = require('./config/db')
 connectDB();
 
+app.use(mongoSanitize());
+
 app.use('/api/v1/days', days);
 app.use('/api/v1/meals', meals);
 app.use('/api/v1/food', food);
+app.use('/api/v1/auth', auth);
 
 app.use(handleErrors);
 
