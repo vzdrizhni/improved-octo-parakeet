@@ -54,7 +54,7 @@ MealSchema.statics.getAllCallories = async function () {
 
 MealSchema.pre('save', async function () {
     const allCallories = this.food.reduce((a, b) => {
-        return a + b.calories
+        return a + (b.food.calories * b.weight)
     }, 0);
     this.totalCalories = allCallories
 
