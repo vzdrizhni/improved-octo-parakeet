@@ -54,10 +54,9 @@ MealSchema.statics.getAllCallories = async function () {
 
 MealSchema.pre('save', async function () {
     const allCallories = this.food.reduce((a, b) => {
-        return a + (b.food.calories * b.weight)
+        return a + (b.food.calories * b.weight) / 100
     }, 0);
-    this.totalCalories = allCallories
-
+    this.totalCalories = allCallories;
 });
 
 module.exports = mongoose.model('Meal', MealSchema);

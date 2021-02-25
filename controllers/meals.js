@@ -77,12 +77,26 @@ exports.addFoodToTheMeal = asyncHandler(async (req, res, next) => {
         return next(new ErrorResponse(`Meal was not found`, 404));
     }
 
-    console.log(meal);
-
-    meal = await meal.save();
+    await meal.save();
 
     res.json({
         success: true,
         data: meal
     })
-})
+});
+
+exports.editMeal = asyncHandler(async (req, res) => {
+    let editedMeal = await Meal.findByIdAndUpdate(req.body._id, req.body, {
+        new: true
+    }).populate('food.food');
+
+    if (!editMeal) {
+        return next(new ErrorResponse(`Meal was not found`, 404));
+    }
+
+    await editedMeal.save();
+    res.status(200).json({
+        success: true,
+        data: editedMeal
+    })
+});
