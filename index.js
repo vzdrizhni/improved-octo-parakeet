@@ -5,6 +5,7 @@ const express = require('express');
 const dotenv = require('dotenv');
 const colors = require('colors');
 const mongoSanitize = require('express-mongo-sanitize');
+const cookieParser = require('cookie-parser');
 
 //routes
 const days = require('./routes/days');
@@ -22,6 +23,8 @@ dotenv.config({
 const app = express();
 
 app.use(express.json());
+
+app.use(cookieParser());
 
 const connectDB = require('./config/db')
 connectDB();
