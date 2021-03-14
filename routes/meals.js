@@ -10,13 +10,13 @@ const {
     editMeal
 } = require('../controllers/meals');
 
-const {protect} = require('../middleware/auth')
+const {protect, authorize} = require('../middleware/auth')
 
 const foodRouter = require('./food');
 
 router.use('/:mealId/food', protect, foodRouter);
 
-router.post('/', protect, createMeal);
+router.post('/', protect, authorize('user', 'admin'), createMeal);
 
 router.post('/:mealId/addFood', protect, addFoodToTheMeal);
 
