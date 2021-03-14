@@ -1,9 +1,10 @@
 const mongoose = require('mongoose');
+var dateFormat = require("dateformat");
 
 const MealSchema = new mongoose.Schema({
     name: {
         type: String,
-        default: 'Meal-' + Date.now().toString()
+        default: 'Meal-' + dateFormat(Date.now(), "dddd, mmmm dS, yyyy, h:MM:ss TT")
     },
     day: {
         type: mongoose.Schema.Types.ObjectId,
