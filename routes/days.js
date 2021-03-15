@@ -12,8 +12,8 @@ const {createDay, getDay, getDays} = require('../controllers/days')
 
 router.post('/', protect, createDay);
 
-router.get('/:dayId', getDay);
+router.get('/:dayId', protect, getDay);
 
-router.get('/', getDays);
+router.get('/',protect, getDays);
 
 module.exports = router;

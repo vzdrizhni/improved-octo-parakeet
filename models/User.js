@@ -26,11 +26,7 @@ const UserSchema = new mongoose.Schema({
       required: [true, 'Please add a password'],
       minlength: 6,
       select: false,
-    },
-    days : [{
-      type: mongoose.Schema.Types.ObjectId,
-      ref: 'Day'
-    }],
+    },    
     resetPasswordToken: String,
     resetPasswordExpire: Date,
     confirmEmailToken: String,    

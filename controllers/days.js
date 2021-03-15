@@ -9,26 +9,14 @@ const ErrorResponse = require('../utils/errors');
 
 exports.createDay = asynchandler(async (req, res) => {
 
-    const savedDay = await Day.create({user: req.user._id});
-
-    let user = await User.findOneAndUpdate({
-        _id: req.user._id
-    }, {
-        $push: {
-            days: savedDay
-        }
-    }, {
-        new: true
-    }).populate('days');
-
-    console.log(user);
+    const savedDay = await Day.create({user: req.user._id});    
 
     if (!savedDay) {
         return next(new ErrorResponse(`A day was not craeted`, 404));
     }
 
     res.status(200).json({
-        data: user.days
+        data: savedDay
     })
 })
 
@@ -45,7 +33,8 @@ exports.getDay = asynchandler(async (req, res) => {
 })
 
 exports.getDays = asynchandler(async (req, res) => {
-    const days = await Day.find().sort({
+
+    const days = await Day.find({user: req.user._id}).sort({
         createdAt: -1
     });
 
