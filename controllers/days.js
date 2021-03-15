@@ -23,7 +23,7 @@ exports.createDay = asynchandler(async (req, res) => {
 })
 
 exports.getDay = asynchandler(async (req, res) => {
-    const day = await Day.findById(req.params.dayId);
+    const day = await Day.findById(req.params.dayId).populate('meals');
 
     if (!day) {
         return next(new ErrorResponse(`A day was not found`, 404));

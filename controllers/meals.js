@@ -10,8 +10,12 @@ exports.createMeal = async (req, res, next) => {
 
     try {
         const meal = await Meal.create(req.body);
+        let day = await Day.findById(req.body.day);
+        day.meals.push(meal);
+        console.log(day);
+        await day.save();
         res.json({
-            data: meal
+            data: day
         });
     } catch (err) {
         if (!err.statusCode) {
