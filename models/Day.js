@@ -8,11 +8,7 @@ const DaySchema = new mongo.Schema({
         type: String,
         required: true,
         default: dateFormat(Date.now(), "dddd, mmmm dS, yyyy, h:MM:ss TT")
-    },
-    meals: [{
-        type: Schema.Types.ObjectId,
-        ref: 'Meal'
-    }],
+    },    
     user: {
         type: Schema.Types.ObjectId,
         required: true

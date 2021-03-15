@@ -26,8 +26,6 @@ exports.addFoodToTheMeal = asyncHandler(async (req, res, next) => {
     const mealId = req.params.mealId;
     let food;
 
-    console.log(req.body.weight);
-
     if (req.body._id) {
         food = await Food.findById(req.body.food._id);
     } else {
@@ -84,12 +82,13 @@ exports.addFoodToTheMeal = asyncHandler(async (req, res, next) => {
     })
 });
 
-exports.editMeal = asyncHandler(async (req, res) => {
-    let editedMeal = await Meal.findByIdAndUpdate(req.body._id, req.body, {
+exports.editMeal = asyncHandler(async (req, res, next) => {
+    
+    let editedMeal = await Meal.findByIdAndUpdate(req.params.mealId, req.body, {
         new: true
     }).populate('food.food');
 
-    if (!editMeal) {
+    if (!editedMeal) {
         return next(new ErrorResponse(`Meal was not found`, 404));
     }
 
