@@ -82,8 +82,32 @@ const sendTokenResponse = (user, statusCode, res) => {
     res.status(statusCode).cookie('token', token, options).json({
         success: true,
         token,
-        confirmationToken
     });
+};
+
+exports.verifyUser = (req, res, next) => {
+    User.findOne({
+            confirmationCode: req.params.confirmationCode,
+        })
+        .select('+password')
+        .then((user) => {
+            if (!user) {
+                return res.status(404).send({
+                    message: "User Not found."
+                });
+            }
+            user.status = "Active";
+            user.save((err) => {
+                if (err) {
+                    res.status(500).send({
+                        message: err
+                    });
+                    return;
+                }
+                res.status(200).json({success: true})
+            });
+        })
+        .catch((e) => console.log("error", e));
 };
 
 const getConfirmationToken = (email) => {
