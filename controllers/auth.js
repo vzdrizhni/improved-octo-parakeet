@@ -2,6 +2,8 @@ const asyncHandler = require('../middleware/async');
 const ErrorResponse = require('../utils/errors');
 const User = require('../models/User');
 
+const sendConfirmationEmail = require('../config/mailer.config');
+
 exports.register = asyncHandler(async (req, res) => {
     const {
         name,
@@ -9,6 +11,8 @@ exports.register = asyncHandler(async (req, res) => {
         password,
         role
     } = req.body;
+
+    const confirmationToken = sendConfirmationEmail(name, email, getConfirmationToken(email));
 
     const user = await User.create({
         name,
@@ -18,7 +22,7 @@ exports.register = asyncHandler(async (req, res) => {
     });
 
     const token = user.getSignedJwtToken();
-    
+
     sendTokenResponse(user, 200, res);
 });
 
@@ -27,6 +31,10 @@ exports.login = asyncHandler(async (req, res, next) => {
         email,
         password
     } = req.body;
+
+    if (user.status != "Active") {
+        return next(new ErrorResponse("Pending Account. Please Verify Your Email!", 400));
+    }
 
     // Validate emil & password
     if (!email || !password) {
@@ -49,7 +57,7 @@ exports.login = asyncHandler(async (req, res, next) => {
         return next(new ErrorResponse('Invalid credentials', 401));
     }
 
-    sendTokenResponse(user, 200, res);   
+    sendTokenResponse(user, 200, res);
 });
 
 const sendTokenResponse = (user, statusCode, res) => {
@@ -70,5 +78,12 @@ const sendTokenResponse = (user, statusCode, res) => {
     res.status(statusCode).cookie('token', token, options).json({
         success: true,
         token,
+        confirmationToken
     });
+};
+
+const getConfirmationToken = (email) => {
+    return jwt.sign({
+        email: email
+    }, process.env.MAIL_SECRET)
 };
