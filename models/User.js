@@ -55,10 +55,7 @@ const UserSchema = new mongoose.Schema({
     });
   };
 
-  UserSchema.methods.getConfirmationToken = function () {
-    return jwt.sign({ id: this._id }, process.env.MAIL_SECRET)
-  };
-
+  
   UserSchema.methods.matchPassword = async function (enteredPassword) {
     return await bcrypt.compare(enteredPassword, this.password);
   };

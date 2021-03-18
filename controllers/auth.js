@@ -1,6 +1,7 @@
 const asyncHandler = require('../middleware/async');
 const ErrorResponse = require('../utils/errors');
 const User = require('../models/User');
+const jwt = require('jsonwebtoken')
 
 const sendConfirmationEmail = require('../config/mailer.config');
 
@@ -12,16 +13,19 @@ exports.register = asyncHandler(async (req, res) => {
         role
     } = req.body;
 
-    const confirmationToken = sendConfirmationEmail(name, email, getConfirmationToken(email));
+    const confirmationToken = getConfirmationToken(email);
+    console.log(confirmationToken);
 
     const user = await User.create({
         name,
         email,
         password,
-        role
+        role,
+        confirmationCode: confirmationToken
     });
 
     const token = user.getSignedJwtToken();
+    sendConfirmationEmail(process.env.MAIL_USER, name, email, confirmationToken)
 
     sendTokenResponse(user, 200, res);
 });

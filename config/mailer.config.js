@@ -1,20 +1,13 @@
-const nodemailer = require("nodemailer");
+const nodemailer = require("nodejs-nodemailer-outlook");
 
-const user = process.env.MAIL_USER;
-const pass = process.env.MAIL_PASSWORD;
-
-const transport = nodemailer.createTransport({
-    service: "Outlook",
-    auth: {
-        user: user,
-        pass: pass,
-    },
-});
-
-module.exports.sendConfirmationEmail = (name, email, confirmationCode) => {
+module.exports = sendConfirmationEmail = (sender, name, email, confirmationCode) => {
     console.log("Check");
-    transport.sendMail({
-        from: user,
+    nodemailer.sendEmail({
+        auth: {
+            user: process.env.MAIL_USER,
+            pass: process.env.MAIL_PASSWORD,
+        },
+        from: sender,
         to: email,
         subject: "Please confirm your account",
         html: `<h1>Email Confirmation</h1>
@@ -22,5 +15,7 @@ module.exports.sendConfirmationEmail = (name, email, confirmationCode) => {
           <p>Thank you for subscribing. Please confirm your email by clicking on the following link</p>
           <a href=http://localhost:${process.env.PORT}/confirm/${confirmationCode}> Click here</a>
           </div>`,
-    }).catch(err => console.log(err));
+        onError: (e) => console.log(e),
+        onSuccess: (i) => console.log(i)
+    })
 };
