@@ -26,7 +26,15 @@ const UserSchema = new mongoose.Schema({
       required: [true, 'Please add a password'],
       minlength: 6,
       select: false,
-    },    
+    },
+    status: {
+      type: String, 
+      enum: ['Pending', 'Active'],
+      default: 'Pending'
+    },
+    confirmationCode: { 
+      type: String, 
+      unique: true },    
     resetPasswordToken: String,
     resetPasswordExpire: Date,
     confirmEmailToken: String,    

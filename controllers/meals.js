@@ -102,3 +102,5 @@ exports.editMeal = asyncHandler(async (req, res, next) => {
         data: editedMeal
     })
 });
+
+//Make a meal delete function
