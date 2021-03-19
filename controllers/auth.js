@@ -14,7 +14,6 @@ exports.register = asyncHandler(async (req, res) => {
     } = req.body;
 
     const confirmationToken = getConfirmationToken(email);
-    console.log(confirmationToken);
 
     const user = await User.create({
         name,
