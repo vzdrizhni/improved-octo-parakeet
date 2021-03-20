@@ -7,6 +7,6 @@ router.post('/register', register);
 router.post('/login', login);
 
 router.get("/confirm/:confirmationCode", verifyUser);
-router.get("/forgotpassword", verifyUser);
+router.post("/forgotpassword", forgotPassword);
 
 module.exports = router;
