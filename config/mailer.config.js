@@ -32,7 +32,7 @@ exports.sendForgotPasswordEmail = (sender, email, resetUrl) => {
         subject: "Please confirm your account",
         html: `<h1>Email Confirmation</h1>
           <h2>Hello</h2>
-          <a href=http://localhost:${process.env.PORT}/api/v1/auth/confirm/${resetUrl}> Click here</a>
+          <p>You are receiving this email because you (or someone else) has requested the reset of a password. Please make a PUT request to: \n\n ${resetUrl}</p>
           </div>`,
         onError: (e) => console.log(e),
         onSuccess: (i) => console.log(i)

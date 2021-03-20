@@ -3,7 +3,10 @@ const ErrorResponse = require('../utils/errors');
 const User = require('../models/User');
 const jwt = require('jsonwebtoken')
 
-const {sendConfirmationEmail, sendForgotPasswordEmail} = require('../config/mailer.config');
+const {
+    sendConfirmationEmail,
+    sendForgotPasswordEmail
+} = require('../config/mailer.config');
 
 exports.register = asyncHandler(async (req, res) => {
     const {
@@ -125,14 +128,14 @@ exports.forgotPassword = asyncHandler(async (req, res, next) => {
 
     await user.save({
         validateBeforeSave: false
-    });  
-    
+    });
+
     const resetUrl = `${req.protocol}://${req.get(
-    'host',
-  )}/api/v1/auth/resetpassword/${resetToken}`;
+        'host',
+      )}/api/v1/auth/resetpassword/${resetToken}`;
 
     try {
-        sendForgotPasswordEmail(process.env.MAIL_USER, req.body.email, resetToken);
+        await sendForgotPasswordEmail(process.env.MAIL_USER, req.body.email, resetUrl);
 
         res.status(200).json({
             success: true,
