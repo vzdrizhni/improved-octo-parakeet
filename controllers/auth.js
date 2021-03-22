@@ -39,29 +39,30 @@ exports.login = asyncHandler(async (req, res, next) => {
         password
     } = req.body;
 
-    if (user.status != "Active") {
-        return next(new ErrorResponse("Pending Account. Please Verify Your Email!", 400));
-    }
-
+    
     if (!email || !password) {
         return next(new ErrorResponse('Please provide an email and password', 400));
     }
-
+    
     const user = await User.findOne({
         email
     }).select('+password');
-
+    
     if (!user) {
         return next(new ErrorResponse('Invalid credentials', 401));
     }
-
+    
     // Check if password matches
     const isMatch = await user.matchPassword(password);
-
+    
     if (!isMatch) {
         return next(new ErrorResponse('Invalid credentials', 401));
     }
-
+    
+    if (user.status != "Active") {
+        return next(new ErrorResponse("Pending Account. Please Verify Your Email!", 400));
+    }
+    
     sendTokenResponse(user, 200, res);
 });
 
@@ -155,26 +156,40 @@ exports.forgotPassword = asyncHandler(async (req, res, next) => {
 exports.resetPassword = asyncHandler(async (req, res, next) => {
 
     const resetPasswordToken = crypto
-      .createHash('sha256')
-      .update(req.params.resettoken)
-      .digest('hex');
-  
+        .createHash('sha256')
+        .update(req.params.resettoken)
+        .digest('hex');
+
     const user = await User.findOne({
-      resetPasswordToken,
-      resetPasswordExpire: { $gt: Date.now() },
+        resetPasswordToken,
+        resetPasswordExpire: {
+            $gt: Date.now()
+        },
     });
-  
+
     if (!user) {
-      return next(new ErrorResponse('Invalid token', 400));
-    }  
+        return next(new ErrorResponse('Invalid token', 400));
+    }
 
     user.password = req.body.password;
     user.resetPasswordToken = undefined;
     user.resetPasswordExpire = undefined;
     await user.save();
-  
+
     sendTokenResponse(user, 200, res);
-  });
+});
+
+exports.logout = asyncHandler(async (req, res, next) => {
+    res.cookie('token', 'none', {
+        expires: new Date(Date.now() + 10 * 1000),
+        httpOnly: true,
+    });
+
+    res.status(200).json({
+        success: true,
+        data: {},
+    });
+});
 
 
 const getConfirmationToken = (email) => {

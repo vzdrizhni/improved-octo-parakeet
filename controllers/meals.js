@@ -114,5 +114,3 @@ exports.deleteMeal = asyncHandler(async(req, res, next) => {
 
     res.status(200).json({success: true, message: `A ${meal.name} was removed`})
 }) 
-
-//Make a meal delete function
