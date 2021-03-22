@@ -106,11 +106,29 @@ exports.deleteMeal = asyncHandler(async(req, res, next) => {
     const mealId = req.params.mealId;
 
     const meal = await Meal.findById(mealId);
+    if (!meal) {
+        return next(new ErrorResponse(`Meal was not found`, 404));
+    }
     await meal.remove();
 
     const day = await Day.findById(meal.day);
+
+    if (!day) {
+        return next(new ErrorResponse(`Day was not found`, 404));
+    }
+
     await day.updateOne({$pull: {meals: meal._id}});
     await day.save();
 
     res.status(200).json({success: true, message: `A ${meal.name} was removed`})
 }) 
+
+exports.getMeal = asyncHandler(async(req, res, next) => {
+    const meal = await Meal.findById(req.params.mealId).populate('food');
+    
+    if (!meal) {
+        return next(new ErrorResponse(`Meal was not found`, 404));
+    }
+
+    res.status(200).json({success: true, data: meal});
+})

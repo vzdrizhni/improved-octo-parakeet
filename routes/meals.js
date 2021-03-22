@@ -8,7 +8,8 @@ const {
     createMeal,
     addFoodToTheMeal,
     editMeal,
-    deleteMeal
+    deleteMeal,
+    getMeal
 } = require('../controllers/meals');
 
 const {protect, authorize} = require('../middleware/auth')
@@ -24,5 +25,7 @@ router.post('/:mealId/addFood', protect, addFoodToTheMeal);
 router.put('/:mealId', protect, editMeal);
 
 router.delete('/:mealId', protect, deleteMeal);
+
+router.get('/:mealId', protect, getMeal);
 
 module.exports = router;
