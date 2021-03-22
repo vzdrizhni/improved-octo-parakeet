@@ -39,30 +39,30 @@ exports.login = asyncHandler(async (req, res, next) => {
         password
     } = req.body;
 
-    
+
     if (!email || !password) {
         return next(new ErrorResponse('Please provide an email and password', 400));
     }
-    
+
     const user = await User.findOne({
         email
     }).select('+password');
-    
+
     if (!user) {
         return next(new ErrorResponse('Invalid credentials', 401));
     }
-    
+
     // Check if password matches
     const isMatch = await user.matchPassword(password);
-    
+
     if (!isMatch) {
         return next(new ErrorResponse('Invalid credentials', 401));
     }
-    
+
     if (user.status != "Active") {
         return next(new ErrorResponse("Pending Account. Please Verify Your Email!", 400));
     }
-    
+
     sendTokenResponse(user, 200, res);
 });
 
@@ -188,6 +188,26 @@ exports.logout = asyncHandler(async (req, res, next) => {
     res.status(200).json({
         success: true,
         data: {},
+    });
+});
+
+exports.updateDetails = asyncHandler(async (req, res, next) => {
+
+    const userData = await User.findById(req.user._id.toString());
+
+    const fieldsToUpdate = {
+        name: req.body.name ? req.body.name : userData.name,
+        email: req.body.email ? req.body.email : userData.email,
+    };
+
+    const user = await User.findByIdAndUpdate(req.user.id, fieldsToUpdate, {
+        new: true,
+        runValidators: true,
+    });
+
+    res.status(200).json({
+        success: true,
+        data: user,
     });
 });
 
