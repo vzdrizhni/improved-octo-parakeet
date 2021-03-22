@@ -71,3 +71,16 @@ exports.deleteDay = asynchandler(async (req, res) => {
         message: `Day with id ${day._id} was removed`
     });
 })
+
+exports.editDay = asynchandler(async(req, res, next) => {
+    const day = await Day.findById(req.params.dayId);
+
+    if (!day) {
+        return next(new ErrorResponse(`A day was not found`, 404));
+    }
+
+    day.name = req.body.name;
+    await day.save();
+
+    res.status(200).json({success: true, data: day});
+})
