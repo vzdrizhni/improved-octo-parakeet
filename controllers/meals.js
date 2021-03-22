@@ -12,7 +12,6 @@ exports.createMeal = async (req, res, next) => {
         const meal = await Meal.create(req.body);
         let day = await Day.findById(req.body.day);
         day.meals.push(meal);
-        console.log(day);
         await day.save();
         res.json({
             data: day
@@ -102,5 +101,18 @@ exports.editMeal = asyncHandler(async (req, res, next) => {
         data: editedMeal
     })
 });
+
+exports.deleteMeal = asyncHandler(async(req, res, next) => {
+    const mealId = req.params.mealId;
+
+    const meal = await Meal.findById(mealId);
+    await meal.remove();
+
+    const day = await Day.findById(meal.day);
+    await day.updateOne({$pull: {meals: meal._id}});
+    await day.save();
+
+    res.status(200).json({success: true, message: `A ${meal.name} was removed`})
+}) 
 
 //Make a meal delete function

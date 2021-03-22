@@ -7,7 +7,8 @@ const router = express.Router({
 const {
     createMeal,
     addFoodToTheMeal,
-    editMeal
+    editMeal,
+    deleteMeal
 } = require('../controllers/meals');
 
 const {protect, authorize} = require('../middleware/auth')
@@ -20,6 +21,8 @@ router.post('/', protect, authorize('user', 'admin'), createMeal);
 
 router.post('/:mealId/addFood', protect, addFoodToTheMeal);
 
-router.put('/:mealId', protect, editMeal)
+router.put('/:mealId', protect, editMeal);
+
+router.delete('/:mealId', protect, deleteMeal);
 
 module.exports = router;
