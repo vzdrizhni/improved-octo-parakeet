@@ -17,8 +17,12 @@ const UserDetailsSchema = new mongoose.Schema({
         type: Number,
         required: true
     },
+    reducedNormOfCalories: {
+        type: Number,
+        required: true
+    },
     user: {
-        type: Schema.Types.ObjectId,
+        type: mongoose.Schema.Types.ObjectId,
         ref: 'User',
         required: true
     },
@@ -32,12 +36,17 @@ const UserDetailsSchema = new mongoose.Schema({
     }
 });
 
+UserDetailsSchema.index({unique: true});
+
 UserDetailsSchema.pre('save', async function () {
     if (gender === 'male') {
-        this.normalWeight = (height - 100)*1.15
+        this.normalWeight = (this.height - 100) * 1.15;
+        this.normOfDailyCalories = (10 * this.weight) + (6.25 * this.height) - (5 * this.age) + 5;
     } else {
-        this.normalWeight = (height - 110)*1.15
-    }  
+        this.normalWeight = (this.height - 110) * 1.15;
+        this.normOfDailyCalories = (10 * this.weight) + (6.25 * this.height) - (5 * this.age) - 161;
+    }
+    this.reducedNormOfCalories = this.normOfDailyCalories * 0.8;
 });
 
 module.exports = mongoose.model('UserDetails', UserDetailsSchema);

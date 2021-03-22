@@ -12,6 +12,7 @@ const days = require('./routes/days');
 const meals = require('./routes/meals');
 const food = require('./routes/food');
 const auth = require('./routes/auth');
+const users = require('./routes/users');
 
 //middlewares
 const handleErrors = require('./middleware/handleErrors');
@@ -35,6 +36,7 @@ app.use('/api/v1/days', days);
 app.use('/api/v1/meals', meals);
 app.use('/api/v1/food', food);
 app.use('/api/v1/auth', auth);
+app.use('/api/v1/users', users);
 
 app.use(handleErrors);
 
