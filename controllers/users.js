@@ -50,3 +50,13 @@ exports.editUserDetails = asyncHandler(async (req, res, next) => {
 
     res.status(200).json({success: true, data: updatedDetails});
 });
+
+exports.getUserDetails = asyncHandler(async (req, res, next) => {
+    const details = await UserDetails.findById(req.params.detailsId);
+
+    if (!details) {
+        return next(new ErrorResponse('User details were not found', 401));
+    }
+
+    res.status(200).json({success: true, data: details});
+})
