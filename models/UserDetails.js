@@ -11,23 +11,24 @@ const UserDetailsSchema = new mongoose.Schema({
     },
     normalWeight: {
         type: Number,
-        required: true
     },
     normOfDailyCalories: {
         type: Number,
-        required: true
     },
     reducedNormOfCalories: {
         type: Number,
-        required: true
     },
     user: {
         type: mongoose.Schema.Types.ObjectId,
         ref: 'User',
-        required: true
+        required: true,
+        unique: true
     },
     gender: {
         type: String,
+        required: [
+            true, 'Please add a gender'
+        ],
         enum: ['male', 'female']
     },
     age: {
@@ -36,10 +37,8 @@ const UserDetailsSchema = new mongoose.Schema({
     }
 });
 
-UserDetailsSchema.index({unique: true});
-
 UserDetailsSchema.pre('save', async function () {
-    if (gender === 'male') {
+    if (this.gender === 'male') {
         this.normalWeight = (this.height - 100) * 1.15;
         this.normOfDailyCalories = (10 * this.weight) + (6.25 * this.height) - (5 * this.age) + 5;
     } else {
