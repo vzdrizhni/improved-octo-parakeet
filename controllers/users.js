@@ -1,6 +1,7 @@
 const UserDetails = require('../models/UserDetails');
 
 const asyncHandler = require('../middleware/async');
+const ErrorResponse = require('../utils/errors');
 
 exports.createUserDetails = asyncHandler(async (req, res, next) => {
     const {
@@ -30,4 +31,22 @@ exports.createUserDetails = asyncHandler(async (req, res, next) => {
         success: true,
         data: details
     });
-})
+});
+
+exports.editUserDetails = asyncHandler(async (req, res, next) => {
+    const detailsId = req.params.detailsId;
+
+    const updatedDetails = await UserDetails.findByIdAndUpdate(detailsId, req.body, {new: true});
+
+    if (!updatedDetails) {
+        return next(new ErrorResponse('User details were not created', 401));
+    }
+
+    if (updatedDetails.user._id.toString() !== req.user._id.toString()) {
+        return next(new ErrorResponse('You are not allowed to work with this document', 401));
+    }
+
+    await updatedDetails.save();
+
+    res.status(200).json({success: true, data: updatedDetails});
+});
