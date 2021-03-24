@@ -5,7 +5,8 @@
   "main": "index.js",
   "scripts": {
     "start": "NODE_ENV=production node server",
-    "dev": "nodemon index.js"
+    "dev": "nodemon index.js",
+    "test": "mocha"
   },
   "repository": {
     "type": "git",
@@ -32,6 +33,8 @@
     "nodemon": "^2.0.7"
   },
   "devDependencies": {
-    "eslint": "^7.20.0"
+    "chai": "^4.3.4",
+    "eslint": "^7.20.0",
+    "mocha": "^8.3.2"
   }
 }
