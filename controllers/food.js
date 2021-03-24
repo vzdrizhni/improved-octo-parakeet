@@ -18,7 +18,7 @@ exports.getSingleFood = asyncHandler(async (req, res, next) => {
         success: true,
         data: food
     });
-})
+});
 
 exports.createFood = asyncHandler(async (req, res, next) => {
     const foodBody = req.body;

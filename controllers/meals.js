@@ -95,6 +95,16 @@ exports.editMeal = asyncHandler(async (req, res, next) => {
         return next(new ErrorResponse(`Meal was not found`, 404));
     }
 
+    const day = await Day.findById(editedMeal.day);
+
+    if (!day) {
+        return next(new ErrorResponse(`Day was not found`, 404));
+    }
+    
+    if (day.user._id !== req.user._id) {
+        return next(new ErrorResponse(`You are not allowed to do that`, 401));
+    }
+
     await editedMeal.save();
     res.status(200).json({
         success: true,
@@ -109,14 +119,18 @@ exports.deleteMeal = asyncHandler(async(req, res, next) => {
     if (!meal) {
         return next(new ErrorResponse(`Meal was not found`, 404));
     }
-    await meal.remove();
-
+    
     const day = await Day.findById(meal.day);
 
     if (!day) {
         return next(new ErrorResponse(`Day was not found`, 404));
     }
-
+    
+    if (day.user._id !== req.user._id) {
+        return next(new ErrorResponse(`You are not allowed to do that`, 401));
+    }
+    
+    await meal.remove();
     await day.updateOne({$pull: {meals: meal._id}});
     await day.save();
 

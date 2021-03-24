@@ -79,6 +79,10 @@ exports.editDay = asynchandler(async(req, res, next) => {
         return next(new ErrorResponse(`A day was not found`, 404));
     }
 
+    if (day.user.toString() !== req.user.id && req.user.role !== 'admin') {
+        return next(new ErrorResponse(`Not authorized to update review`, 401));
+    }
+
     day.name = req.body.name;
     await day.save();
 
