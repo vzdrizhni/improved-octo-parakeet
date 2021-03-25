@@ -5,7 +5,13 @@ Calorifer  |  List of endpoints.
 List of endpoints.
 
 -   **[Authorization](#Authorization)**
-    -   [Change password](#jump-Authorization-Changepassword)
+        <details>
+            <summary>
+                -   [Change password](#jump-Authorization-Changepassword)
+            </summary>
+            <br>
+            #### **Change password**  |  **PUT**   http://localhost:5000/api/v1/auth/updatepassword
+        </details>
     -   [Forgot password](#jump-Authorization-Forgotpassword)
     -   [Login](#jump-Authorization-Login)
     -   [Update Password](#jump-Authorization-UpdatePassword)
@@ -38,7 +44,6 @@ Endpoints for authorization.
 
 raw [](#collapse-Authorization-Changepassword)
 
-#### **Change password**  |  **PUT**   http://localhost:5000/api/v1/auth/updatepassword {.panel-title}
 
 ##### Description {.label .label-default}
 
