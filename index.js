@@ -6,6 +6,8 @@ const dotenv = require('dotenv');
 const colors = require('colors');
 const mongoSanitize = require('express-mongo-sanitize');
 const cookieParser = require('cookie-parser');
+const helmet = require('helmet');
+const xss = require('xss-clean');
 
 //routes
 const days = require('./routes/days');
@@ -31,6 +33,8 @@ const connectDB = require('./config/db')
 connectDB();
 
 app.use(mongoSanitize());
+app.use(helmet());
+app.use(xss());
 
 app.use('/api/v1/days', days);
 app.use('/api/v1/meals', meals);
