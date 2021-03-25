@@ -8,6 +8,8 @@ const mongoSanitize = require('express-mongo-sanitize');
 const cookieParser = require('cookie-parser');
 const helmet = require('helmet');
 const xss = require('xss-clean');
+const rateLimit = require('express-rate-limit');
+const hpp = require('hpp');
 
 //routes
 const days = require('./routes/days');
@@ -35,6 +37,12 @@ connectDB();
 app.use(mongoSanitize());
 app.use(helmet());
 app.use(xss());
+const limiter = rateLimit({
+    windowMs: 10 * 60 * 1000,
+    max: 100
+});
+app.use(limiter);
+app.use(hpp());
 
 app.use('/api/v1/days', days);
 app.use('/api/v1/meals', meals);
