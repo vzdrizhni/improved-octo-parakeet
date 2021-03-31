@@ -1,5 +1,6 @@
 //core packages
 const express = require('express');
+const path = require('path');
 
 //third-party-packages
 const dotenv = require('dotenv');
@@ -50,7 +51,13 @@ app.use('/api/v1/food', food);
 app.use('/api/v1/auth', auth);
 app.use('/api/v1/users', users);
 
+app.get('/', (req, res) => {
+    res.sendFile(path.join(__dirname + '/public/index.html'));
+});
+
 app.use(handleErrors);
+
+// app.use(express.static(path.join(__dirname, 'public')));
 
 const PORT = process.env.PORT || 5000;
 
