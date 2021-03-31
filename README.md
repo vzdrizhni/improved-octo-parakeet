@@ -10,7 +10,10 @@ List of endpoints.
                 -   [Change password](#jump-Authorization-Changepassword)
             </summary>
             <br>
-            #### **Change password**  |  **PUT**   http://localhost:5000/api/v1/auth/updatepassword
+           * **Method:**
+           * **PUT**  
+           * **URL**
+           /api/v1/auth/updatepassword
         </details>
     -   [Forgot password](#jump-Authorization-Forgotpassword)
     -   [Login](#jump-Authorization-Login)
