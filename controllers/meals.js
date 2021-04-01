@@ -101,6 +101,9 @@ exports.editMeal = asyncHandler(async (req, res, next) => {
         return next(new ErrorResponse(`Day was not found`, 404));
     }
 
+    console.log(day.user._id);
+    console.log(req.user);
+    
     if (day.user._id !== req.user._id) {
         return next(new ErrorResponse(`You are not allowed to do that`, 401));
     }
