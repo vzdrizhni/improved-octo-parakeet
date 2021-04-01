@@ -57,7 +57,7 @@ app.get('/', (req, res) => {
 
 app.use(handleErrors);
 
-// app.use(express.static(path.join(__dirname, 'public')));
+app.use(express.static(path.join(__dirname, 'public')));
 
 const PORT = process.env.PORT || 5000;
 
