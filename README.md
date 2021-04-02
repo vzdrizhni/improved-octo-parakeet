@@ -31,12 +31,12 @@
   <p align="center">
     This is an application for tracking calories built with Express JS and MongoDB.
     <br />
-    <a href="https://github.com/vzdrizhni//improved-octo-parakeet"><strong>Explore the docs »</strong></a>
+    <a href="https://github.com/vzdrizhni/improved-octo-parakeet"><strong>Explore the docs »</strong></a>
     <br />
     <br />
-    <a href="https://github.com/vzdrizhni//improved-octo-parakeet">Report Bug</a>
+    <a href="https://github.com/vzdrizhni/improved-octo-parakeet">Report Bug</a>
     ·
-    <a href="https://github.com/vzdrizhni//improved-octo-parakeet">Request Feature</a>
+    <a href="https://github.com/vzdrizhni/improved-octo-parakeet">Request Feature</a>
   </p>
 </p>
 
