@@ -26,7 +26,7 @@
     <img src="public/nick.png" alt="Logo" width="80" height="120">
   </a>
 
-  <h3 align="center">ReactJs --> [Pizza_Shop App]</h3>
+  <h3 align="center">NodeJS --> [Calorifer]</h3>
 
   <p align="center">
     This is a Pizza-Shop app built with React.
