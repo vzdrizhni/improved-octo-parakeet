@@ -19,8 +19,6 @@ exports.createUserDetails = asyncHandler(async (req, res, next) => {
         user: req.user._id
     });
 
-    console.log(details);
-
     await details.save();
 
     if (!details) {
