@@ -23,7 +23,7 @@
 <br />
 <p align="center">  
   <a href="https://github.com/vzdrizhni/improved-octo-parakeet">
-    <img src="src/assets/pictures/nick.png" alt="Logo" width="80" height="120">
+    <img src="publick/nick.png" alt="Logo" width="80" height="120">
   </a>
 
   <h3 align="center">ReactJs --> [Pizza_Shop App]</h3>
@@ -54,7 +54,7 @@
 ## About The Project
 The project is about real-world pizza online shop. Though it's small it has all the functionality average online shops have. Customers can add multiple pizzas to the cart, choose the currency and make an order. If the user is signed in they can see their purchase history.
 
-![screenshot-1](src/assets/pictures/screenshot.PNG)
+![screenshot-1](public/screenshot.PNG)
 
 ### Built With
 This project was built using these technologies.
