@@ -29,7 +29,7 @@
   <h3 align="center">NodeJS --> [Calorifer]</h3>
 
   <p align="center">
-    This is a Pizza-Shop app built with React.
+    This is an application for tracking calories built with Express JS and MongoDB.
     <br />
     <a href="https://github.com/vzdrizhni//improved-octo-parakeet"><strong>Explore the docs »</strong></a>
     <br />
