@@ -23,7 +23,7 @@
 <br />
 <p align="center">  
   <a href="https://github.com/vzdrizhni/improved-octo-parakeet">
-    <img src="publick/nick.png" alt="Logo" width="80" height="120">
+    <img src="public/nick.png" alt="Logo" width="80" height="120">
   </a>
 
   <h3 align="center">ReactJs --> [Pizza_Shop App]</h3>
