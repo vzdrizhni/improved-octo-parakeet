@@ -26,376 +26,116 @@
     <img src="src/assets/pictures/nick.png" alt="Logo" width="80" height="120">
   </a>
 
-  <h3 align="center">ReactJs --> [Calorifer]</h3>
+  <h3 align="center">ReactJs --> [Pizza_Shop App]</h3>
 
   <p align="center">
     This is a Pizza-Shop app built with React.
     <br />
-    <a href="https://github.com/vzdrizhni/improved-octo-parakeet"><strong>Explore the docs »</strong></a>
+    <a href="https://github.com/vzdrizhni//improved-octo-parakeet"><strong>Explore the docs »</strong></a>
     <br />
     <br />
-    <a href="https://github.com/vzdrizhni/improved-octo-parakeet">Report Bug</a>
+    <a href="https://github.com/vzdrizhni//improved-octo-parakeet">Report Bug</a>
     ·
-    <a href="https://github.com/vzdrizhni/improved-octo-parakeet">Request Feature</a>
+    <a href="https://github.com/vzdrizhni//improved-octo-parakeet">Request Feature</a>
   </p>
 </p>
 
-List of endpoints.
+<!-- TABLE OF CONTENTS -->
+## Table of Contents
 
--   **[Authorization](#Authorization)**
-        <details>
-            <summary>
-                -   [Change password](#jump-Authorization-Changepassword)
-            </summary>
-            <br>
-           * **Method:**
-           * **PUT**  
-           * **URL**
-           /api/v1/auth/updatepassword
-        </details>
-    -   [Forgot password](#jump-Authorization-Forgotpassword)
-    -   [Login](#jump-Authorization-Login)
-    -   [Update Password](#jump-Authorization-UpdatePassword)
-    -   [logout](#jump-Authorization-logout)
-    -   [registration](#jump-Authorization-registration)
-    -   [update credentials](#jump-Authorization-updatecredentials)
--   **[Days](#Days)**
-    -   [Create Day](#jump-Days-CreateDay)
-    -   [Delete day](#jump-Days-Deleteday)
-    -   [Edit days name](#jump-Days-Editdaysname)
-    -   [get all days](#jump-Days-getalldays)
-    -   [get single day](#jump-Days-getsingleday)
--   **[Food](#Food)**
-    -   [Get single food](#jump-Food-Getsinglefood)
-    -   [addFoodToTheMeal](#jump-Food-addFoodToTheMeal)
-    -   [create food](#jump-Food-createfood)
--   **[Meals](#Meals)**
-    -   [Create meal](#jump-Meals-Createmeal)
-    -   [Delete Meal](#jump-Meals-DeleteMeal)
-    -   [Edit Meal](#jump-Meals-EditMeal)
-    -   [Get meal](#jump-Meals-Getmeal)
--   **[Users](#Users)**
-    -   [Edit user details](#jump-Users-Edituserdetails)
-    -   [Get details](#jump-Users-Getdetails)
-    -   [createuserdetails](#jump-Users-createuserdetails)
+* [About the Project](#about-the-project)
+  * [Built With](#built-with)
+  * [Usage](#usage)
+* [Contributors](#contributors)
+* [Acknowledgements](#acknowledgements)
+* [License](#license)
 
-### Authorization 7 {#Authorization .panel-title}
+<!-- ABOUT THE PROJECT -->
+## About The Project
+The project is about real-world pizza online shop. Though it's small it has all the functionality average online shops have. Customers can add multiple pizzas to the cart, choose the currency and make an order. If the user is signed in they can see their purchase history.
 
-Endpoints for authorization.
+![screenshot-1](src/assets/pictures/screenshot.PNG)
 
-raw [](#collapse-Authorization-Changepassword)
+### Built With
+This project was built using these technologies.
+* HTML/CSS
+* ReactJs
+* Redux
+* JavaScript
+* ESLint
 
+<!-- INSTALLATION -->
+## Usage
 
-##### Description {.label .label-default}
+To have this app on your pc, you need to:
+* [download](https://github.com/vzdrizhni//Pizza_Shop/archive/develop.zip) or clone this repo:
+  - Clone with SSH:
+  ```
+    git@github.com:vzdrizhni//Pizza_Shop.git
+  ```
+  - Clone with HTTPS
+  ```
+    https://github.com/vzdrizhni//Pizza_Shop.git
+  ```
 
-\
+* In the project directory, you can run:
 
-Change password.\
-\
+  - `$ yarn install` - installs all the dependencies required by the project
 
-##### Body {.label .label-primary}
+  - `$ yarn start` - runs the app in the development mode:
+    - Open [http://localhost:3000](http://localhost:3000) to view it in the browser.
+    - The page will reload if you make edits.
+    - You will also see any lint errors in the console.
 
-{ "currentPassword": "123456", "newPassword": "123123" }
+  - `$ yarn test`
+    - Launches the test runner in the interactive watch mode.
+    - See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
 
-raw [](#collapse-Authorization-Forgotpassword)
+  - `$ yarn build`
+    - Builds the app for production to the `build` folder.
+    - It correctly bundles React in production mode and optimizes the build for the best performance.
+    - The build is minified and the filenames include the hashes.
+    - Your app is ready to be deployed!
 
-#### **Forgot password**  |  **POST**   http://localhost:5000/api/v1/auth/forgotpassword {.panel-title}
+## Live Demo & Deployment
+The project has been deployed with Netlify.
 
-##### Description {.label .label-default}
+[Live Demo Link](https://roman-pizza.netlify.app/) :point_left:
 
-\
+<!-- CONTACT -->
+## Contributors
 
-Request for updating forgotten password.\
-\
+👤 **Roman Nikolaev**
 
-##### Body {.label .label-primary}
+- LinkedIn: [Roman Nikolaev]https://www.linkedin.com/in/romannikolaev/)
+- GitHub: [vzdrizhni](https://github.com/vzdrizhni)
+- E-mail: vzdrizhni@gmail.com
 
-{ "email": "vzdrizhni@gmail.com" }
+## :handshake: Contributing
 
-raw [](#collapse-Authorization-Login)
+Contributions, issues and feature requests are welcome!
 
-#### **Login**  |  **POST**   http://localhost:5000/api/v1/auth/login {.panel-title}
+Feel free to check the [issues page](https://github.com/vzdrizhni//Pizza_Shop/issues).
 
-##### Description {.label .label-default}
+## Show your support
 
-\
+Give a :star: if you like this project!
 
-User login.\
-\
+<!-- ACKNOWLEDGEMENTS -->
+## Acknowledgements
+* [React Documentation](https://reactjs.org/docs/getting-started.html)
 
-##### Body {.label .label-primary}
+<!-- MARKDOWN LINKS & IMAGES -->
+<!-- https://www.markdownguide.org/basic-syntax/#reference-style-links -->
+[contributors-shield]: https://img.shields.io/github/contributors/vzdrizhni/Pizza_Shop.svg?style=flat-square
+[contributors-url]: https://github.com/vzdrizhni/Pizza_Shop/graphs/contributors
+[forks-shield]: https://img.shields.io/github/forks/vzdrizhni/Pizza_Shop.svg?style=flat-square
+[forks-url]: https://github.com/vzdrizhni/Pizza_Shop/network/members
+[stars-shield]: https://img.shields.io/github/stars/vzdrizhni/Pizza_Shop.svg?style=flat-square
+[stars-url]: https://github.com/vzdrizhni/Pizza_Shop/stargazers
+[issues-shield]: https://img.shields.io/github/issues/vzdrizhni/Pizza_Shop.svg?style=flat-square
+[issues-url]: https://github.com/vzdrizhni/Pizza_Shop/issues
 
-{ "name": "User", "email": "example@mail.com", "password": "123321" }
+## 📝 License
 
-raw [](#collapse-Authorization-UpdatePassword)
-
-#### **Update Password**  |  **PUT**   http://localhost:5000/api/v1/auth/resetpassword/fc003eabbfe5b6cc23fa5128f1d2d83d1abf3e90 {.panel-title}
-
-##### Description {.label .label-default}
-
-\
-
-Updates the password based on key that was send with an email.\
-\
-
-##### Body {.label .label-primary}
-
-{ "password": "123456" }
-
-[](#collapse-Authorization-logout)
-
-#### **logout**  |  **DELETE**   http://localhost:5000/api/v1/auth/logout {.panel-title}
-
-##### Description {.label .label-default}
-
-\
-
-User logout.\
-\
-
-raw [](#collapse-Authorization-registration)
-
-#### **registration**  |  **POST**   http://localhost:5000/api/v1/auth/register {.panel-title}
-
-##### Description {.label .label-default}
-
-\
-
-User registraion.\
-\
-
-##### Body {.label .label-primary}
-
-{ "name": "User", "email": "example@mail.com", "password": "123321" }
-
-raw [](#collapse-Authorization-updatecredentials)
-
-#### **update credentials**  |  **PUT**   http://localhost:5000/api/v1/auth/updatedetails {.panel-title}
-
-##### Description {.label .label-default}
-
-\
-
-Change user name.\
-\
-
-##### Body {.label .label-primary}
-
-{ "name": "John Doe" }
-
-### Days 5 {#Days .panel-title}
-
-List of endpoints for the application. Most of endpoints require to be
-logged in.
-
-[](#collapse-Days-CreateDay)
-
-#### **Create Day**  |  **POST**   http://localhost:5000/api/v1/days {.panel-title}
-
-##### Description {.label .label-default}
-
-\
-
-Creates a day for user.\
-\
-
-[](#collapse-Days-Deleteday)
-
-#### **Delete day**  |  **DELETE**   http://localhost:5000/api/v1/days/604f520b6c69023150d99378 {.panel-title}
-
-##### Description {.label .label-default}
-
-\
-
-Deletes the day.\
-\
-
-raw [](#collapse-Days-Editdaysname)
-
-#### **Edit days name**  |  **PUT**   http://localhost:5000/api/v1/days/60589c63a7607c30343ee549 {.panel-title}
-
-##### Description {.label .label-default}
-
-\
-
-Changes a days name(If for some reason user wants a different from
-default one).\
-\
-
-##### Body {.label .label-primary}
-
-{ "name": "Dinner" }
-
-[](#collapse-Days-getalldays)
-
-#### **get all days**  |  **GET**   http://localhost:5000/api/v1/days {.panel-title}
-
-##### Description {.label .label-default}
-
-\
-
-Returns all days for the current user.\
-\
-
-[](#collapse-Days-getsingleday)
-
-#### **get single day**  |  **GET**   http://localhost:5000/api/v1/days/604f5aebccdbf60be0979abd {.panel-title}
-
-##### Description {.label .label-default}
-
-\
-
-Returns certain day based on a current user and url params.\
-\
-
-### Food 3 {#Food .panel-title}
-
-Endpoints for food.
-
-[](#collapse-Food-Getsinglefood)
-
-#### **Get single food**  |  **GET**   http://localhost:5000/api/v1/food/123 {.panel-title}
-
-##### Description {.label .label-default}
-
-\
-
-Retrieves single food.\
-\
-
-raw [](#collapse-Food-addFoodToTheMeal)
-
-#### **addFoodToTheMeal**  |  **POST**   http://localhost:5000/api/v1/days/604f80c9714c382170369eed/meals/604f620db230251becad1b03/addFood {.panel-title}
-
-##### Description {.label .label-default}
-
-\
-
-Adds food to the meal document.\
-\
-
-##### Body {.label .label-primary}
-
-{"food": { "name": "Cod Liver Oil", "calories": 902 }, "weight":10 }
-
-raw [](#collapse-Food-createfood)
-
-#### **create food**  |  **POST**   http://localhost:5000/api/v1/food {.panel-title}
-
-##### Description {.label .label-default}
-
-\
-
-Creates a food.\
-\
-
-##### Body {.label .label-primary}
-
-{ "name": "bread", "calories": 350 }
-
-### Meals 4 {#Meals .panel-title}
-
-Endpoints for Meals based on a user and a day.
-
-[](#collapse-Meals-Createmeal)
-
-#### **Create meal**  |  **POST**   http://localhost:5000/api/v1/days/60589c63a7607c30343ee549/meals {.panel-title}
-
-##### Description {.label .label-default}
-
-\
-
-Creates a meal.\
-\
-
-[](#collapse-Meals-DeleteMeal)
-
-#### **Delete Meal**  |  **DELETE**   http://localhost:5000/api/v1/days/604f82dcd27a6a0570565c09/meals/60589c83a7607c30343ee54a {.panel-title}
-
-##### Description {.label .label-default}
-
-\
-
-Deletes a meal.\
-\
-
-raw [](#collapse-Meals-EditMeal)
-
-#### **Edit Meal**  |  **PUT**   http://localhost:5000/api/v1/days/604f5aebccdbf60be0979abd/meals/60589c83a7607c30343ee54a {.panel-title}
-
-##### Description {.label .label-default}
-
-\
-
-Updates a meal.\
-\
-
-##### Body {.label .label-primary}
-
-{ "name": "Meal-1614182637055", "totalCalories": 4000, "\_id":
-"60589c83a7607c30343ee54a", "day": "604f5aebccdbf60be0979abd", "food":
-[], "createdAt": "2021-02-24T16:04:15.870Z", "updatedAt":
-"2021-02-24T16:16:43.712Z", "\_\_v": 0 }
-
-[](#collapse-Meals-Getmeal)
-
-#### **Get meal**  |  **GET**   http://localhost:5000/api/v1/days/60589c63a7607c30343ee549/meals/60589c83a7607c30343ee54a {.panel-title}
-
-##### Description {.label .label-default}
-
-\
-
-Retrieves a certain meal.\
-\
-
-### Users 3 {#Users .panel-title}
-
-Endpoints for user personal information.
-
-raw [](#collapse-Users-Edituserdetails)
-
-#### **Edit user details**  |  **PUT**   http://localhost:5000/api/v1/users/edituserdetails/6059c18e9434ca074433d2a3 {.panel-title}
-
-##### Description {.label .label-default}
-
-\
-
-Updates user’s body parameters.\
-\
-
-##### Body {.label .label-primary}
-
-{ "height": 167, "weight": 120, "age": 32, "gender": "male" }
-
-[](#collapse-Users-Getdetails)
-
-#### **Get details**  |  **GET**   http://localhost:5000/api/v1/users/getuserdetails/6059c18e9434ca074433d2a3 {.panel-title}
-
-##### Description {.label .label-default}
-
-\
-
-Retrieves users details.\
-\
-
-raw [](#collapse-Users-createuserdetails)
-
-#### **createuserdetails**  |  **POST**   http://localhost:5000/api/v1/users/createuserdetails {.panel-title}
-
-##### Description {.label .label-default}
-
-\
-
-Creates a document with user body parameters.\
-\
-
-##### Body {.label .label-primary}
-
-{ "height": 167, "weight": 123, "age": 32, "gender": "male" }
-
-\
-\
-
-Made with *♥* by [thedevsaddam](https://github.com/thedevsaddam) |
-Generated at: 2021-03-25 18:23:02 by
-[docgen](https://github.com/thedevsaddam/docgen)
+This project is [MIT](https://opensource.org/licenses/MIT) licensed.
