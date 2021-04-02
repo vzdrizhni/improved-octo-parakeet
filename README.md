@@ -52,7 +52,7 @@
 
 <!-- ABOUT THE PROJECT -->
 ## About The Project
-The project is about real-world pizza online shop. Though it's small it has all the functionality average online shops have. Customers can add multiple pizzas to the cart, choose the currency and make an order. If the user is signed in they can see their purchase history.
+This is a back-end application for tracking calories. The application has feautures as: registration, authentication and all CRUD operations needed for all models.
 
 ![screenshot-1](public/screenshot.PNG)
 
@@ -98,9 +98,9 @@ To have this app on your pc, you need to:
     - Your app is ready to be deployed!
 
 ## Live Demo & Deployment
-The project has been deployed with Netlify.
+The project has been deployed with Heroku.
 
-[Live Demo Link](https://roman-pizza.netlify.app/) :point_left:
+[Live Demo Link](https://calorifer.herokuapp.com/) :point_left:
 
 <!-- CONTACT -->
 ## Contributors
