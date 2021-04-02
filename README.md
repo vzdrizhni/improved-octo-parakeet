@@ -2,6 +2,33 @@ Calorifer  |  List of endpoints.
 
 ### Calorifer
 
+[![Contributors][contributors-shield]][contributors-url]
+[![Forks][forks-shield]][forks-url]
+[![Stargazers][stars-shield]][stars-url]
+[![Issues][issues-shield]][issues-url]
+
+
+<!-- PROJECT LOGO -->
+<br />
+<p align="center">  
+  <a href="https://github.com/vzdrizhni/Pizza_Shop">
+    <img src="src/assets/pictures/nick.png" alt="Logo" width="80" height="120">
+  </a>
+
+  <h3 align="center">ReactJs --> [Pizza_Shop App]</h3>
+
+  <p align="center">
+    This is a Pizza-Shop app built with React.
+    <br />
+    <a href="https://github.com/vzdrizhni//Pizza_Shop"><strong>Explore the docs »</strong></a>
+    <br />
+    <br />
+    <a href="https://github.com/vzdrizhni//Pizza_Shop/issues">Report Bug</a>
+    ·
+    <a href="https://github.com/vzdrizhni//Pizza_Shop/issues">Request Feature</a>
+  </p>
+</p>
+
 List of endpoints.
 
 -   **[Authorization](#Authorization)**
