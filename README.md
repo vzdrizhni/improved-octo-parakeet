@@ -58,11 +58,7 @@ This is a back-end application for tracking calories. The application has feautu
 
 ### Built With
 This project was built using these technologies.
-* HTML/CSS
-* ReactJs
-* Redux
-* JavaScript
-* ESLint
+* Node JS
 
 <!-- INSTALLATION -->
 ## Usage
