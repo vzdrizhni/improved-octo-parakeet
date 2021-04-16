@@ -96,7 +96,7 @@ To have this app on your pc, you need to:
 ## Live Demo & Deployment
 The project has been deployed with Heroku.
 
-[Live Demo Link](https://calorifer.herokuapp.com/) :point_left:
+[Here's the link of all endpoints - ](https://calorifer.herokuapp.com/) :point_left:
 
 <!-- CONTACT -->
 ## Contributors
