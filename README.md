@@ -59,6 +59,7 @@ This is a back-end application for tracking calories. The application has feautu
 ### Built With
 This project was built using these technologies.
 * Node JS
+* MongoDB
 
 <!-- INSTALLATION -->
 ## Usage
