@@ -52,7 +52,7 @@
 
 <!-- ABOUT THE PROJECT -->
 ## About The Project
-This is a back-end application for tracking calories. The application has feautures as: registration, authentication and all CRUD operations needed for all models. (To see all the endpoits go to (https://calorifer.herokuapp.com/) 👈)
+This is a back-end application for tracking calories. The application has feautures as: registration, authentication and all CRUD operations needed for all models. (To see all the endpoits go to (https://calorifer.herokuapp.com/) 👈) The purpose of the project is to practice with NodeJS and MongoDB.
 
 ![screenshot-1](public/screenshot.PNG)
 
